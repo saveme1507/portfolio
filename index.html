@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asep Widiyotomo — System Analyst & Full Stack Developer</title>
+<meta name="description" content="Portofolio Asep Widiyotomo: aplikasi web, mobile, dan IoT untuk pemerintahan, pendidikan, dan bisnis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --board:#0C1D38;      /* substrat PCB biru tua */
+  --board-2:#122949;    /* panel */
+  --trace:#22406E;      /* jalur tembaga mati */
+  --gold:#E3B341;       /* pad solder / arus */
+  --cyan:#3FC8D6;       /* sinyal */
+  --text:#E6EDF6;
+  --dim:#8FA3BF;
+  --rule:#1F3A63;
+  --display:"Chakra Petch",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;
+  background:
+    linear-gradient(var(--rule) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg,var(--rule) 1px,transparent 1px) 0 0/40px 40px,
+    var(--board);
+  background-blend-mode:normal;
+}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 700px at 70% -10%,rgba(63,200,214,.10),transparent 60%),linear-gradient(rgba(12,29,56,.86),rgba(12,29,56,.86));pointer-events:none;z-index:-1}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(12,29,56,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 18px var(--display);letter-spacing:.02em}
+.brand i{width:26px;height:26px;border:2px solid var(--gold);border-radius:5px;display:grid;place-items:center;font:700 11px var(--display);font-style:normal;color:var(--gold)}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:15px}
+nav ul a{text-decoration:none;color:var(--dim)}
+nav ul a:hover{color:var(--cyan)}
+
+/* HERO: papan sirkuit */
+.hero{padding:64px 0 48px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+h1{font:700 clamp(44px,6.6vw,78px)/1 var(--display);letter-spacing:-.01em;margin:0 0 22px}
+.lead{font-size:19px;color:var(--dim);max-width:36ch;margin:0 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:6px;font:600 16px var(--body);text-decoration:none;border:1.5px solid var(--gold)}
+.btn.primary{background:var(--gold);color:var(--board)}
+.btn.primary:hover{background:#F0C65C}
+.btn.ghost{color:var(--gold)}
+.btn.ghost:hover{background:rgba(227,179,65,.1)}
+.stats{display:flex;gap:36px;margin-top:40px;padding-top:24px;border-top:1px solid var(--rule)}
+.stats b{display:block;font:700 30px var(--display);color:var(--text)}
+.stats span{font-size:14px;color:var(--dim)}
+
+.board{width:100%;height:auto;display:block}
+.board .tr{fill:none;stroke:var(--trace);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.board .live{fill:none;stroke:var(--cyan);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:22 600;filter:drop-shadow(0 0 6px var(--cyan));animation:flow 3.4s linear infinite}
+.board .live.g{stroke:var(--gold);filter:drop-shadow(0 0 6px var(--gold))}
+.board .d1{animation-delay:.6s}.board .d2{animation-delay:1.2s}.board .d3{animation-delay:1.8s}.board .d4{animation-delay:2.4s}
+@keyframes flow{from{stroke-dashoffset:622}to{stroke-dashoffset:0}}
+.board .pad{fill:var(--board);stroke:var(--gold);stroke-width:3}
+.board .via{fill:var(--gold)}
+.board .chip{fill:#0A172C;stroke:#3A5C8F;stroke-width:2}
+.board .pin{fill:#6F86A8}
+.board .lbl{font:600 15px var(--display);fill:var(--text);letter-spacing:.02em}
+.board .sub{font:400 12px var(--body);fill:var(--dim)}
+.board .core{font:700 30px var(--display);fill:var(--gold)}
+.board .coresub{font:500 12px var(--display);fill:var(--dim);letter-spacing:.12em}
+.board .glow{animation:glow 3.4s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.35}50%{opacity:1}}
+
+section{padding:80px 0}
+h2{font:700 clamp(32px,4.4vw,48px)/1.05 var(--display);margin:0 0 12px}
+.intro{color:var(--dim);max-width:60ch;margin:0 0 40px}
+
+.panel{background:linear-gradient(180deg,rgba(18,41,73,.92),rgba(14,33,61,.92));border:1px solid var(--rule);border-radius:10px}
+
+/* tentang */
+.about .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.about p{margin:0 0 16px;max-width:60ch;color:#C9D5E6}
+.spec{padding:8px 24px}
+.spec dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0}
+.spec dt,.spec dd{padding:14px 0;border-bottom:1px solid var(--rule);margin:0}
+.spec dt{color:var(--dim);padding-right:24px}
+.spec dd{text-align:right;font-weight:600}
+.spec dt:last-of-type,.spec dd:last-of-type{border-bottom:0}
+
+/* keahlian per lapisan */
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+.layer{padding:26px;position:relative}
+.layer::before{content:"";position:absolute;left:26px;top:-1px;width:56px;height:3px;background:var(--c)}
+.layer h3{font:700 22px var(--display);margin:4px 0 4px;color:var(--c)}
+.layer .what{color:var(--dim);font-size:15px;margin:0 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{font-size:14px;padding:6px 11px;border-radius:4px;background:rgba(255,255,255,.04);border:1px solid #2A4A78;color:#D3DEEC}
+
+/* timeline sebagai bus */
+.bus{list-style:none;margin:0;padding:0;position:relative}
+.bus::before{content:"";position:absolute;left:150px;top:6px;bottom:6px;width:4px;background:var(--trace);border-radius:2px}
+.bus li{display:grid;grid-template-columns:130px 1fr;gap:48px;padding:0 0 40px;position:relative}
+.bus li::after{content:"";position:absolute;left:143px;top:5px;width:18px;height:18px;border-radius:50%;background:var(--board);border:3px solid var(--gold)}
+.bus li.now::after{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.yr{font:600 18px var(--display);color:var(--gold);text-align:right;white-space:nowrap}
+.bus h3{font:700 23px var(--display);margin:0}
+.bus .role{color:var(--cyan);font-weight:500;margin:2px 0 8px;font-size:15px}
+.bus p{margin:0;max-width:62ch;color:#C9D5E6}
+
+/* proyek */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 28px}
+.filters button{font:600 14px var(--display);letter-spacing:.03em;padding:9px 16px;border-radius:5px;border:1px solid #2A4A78;background:transparent;color:var(--dim);cursor:pointer}
+.filters button:hover{color:var(--text);border-color:var(--dim)}
+.filters button[aria-pressed="true"]{background:var(--cyan);border-color:var(--cyan);color:var(--board)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{padding:22px 22px 20px;display:flex;flex-direction:column;position:relative}
+.card[hidden]{display:none}
+.card .ind{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--dim);margin-bottom:12px}
+.card .ind::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--k)}
+.card h3{font:700 20px/1.2 var(--display);margin:0 0 8px}
+.card p{margin:0 0 16px;font-size:15px;color:#C2CFE1;flex:1}
+.card .client{font-size:13px;font-weight:600;color:var(--k)}
+.card.feat{grid-column:span 2;border-color:#2E5A8E;background:linear-gradient(135deg,rgba(63,200,214,.12),rgba(18,41,73,.92) 55%)}
+.card.feat h3{font-size:26px}
+[data-c=gov]{--k:var(--cyan)}[data-c=biz]{--k:var(--gold)}[data-c=edu]{--k:#8FB8FF}[data-c=iot]{--k:#7EE2A8}
+
+/* kontak */
+.contact{padding:88px 0 40px;border-top:1px solid var(--rule)}
+.contact h2{max-width:18ch}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px}
+.links a{display:block;text-decoration:none;padding:22px}
+.links a:hover{border-color:var(--gold)}
+.links b{display:block;font:700 19px var(--display);color:var(--gold);margin-bottom:4px}
+.links span{color:#C9D5E6;font-size:15px;word-break:break-word}
+footer{color:var(--dim);font-size:14px;border-top:1px solid var(--rule);padding-top:20px}
+
+@media (max-width:920px){
+  .hero .wrap,.about .wrap{grid-template-columns:1fr}
+  .layers,.grid,.links{grid-template-columns:1fr}
+  .card.feat{grid-column:auto}
+  nav ul{display:none}
+  .stats{gap:24px}
+  .bus::before{left:8px}
+  .bus li{grid-template-columns:1fr;gap:4px;padding-left:36px}
+  .bus li::after{left:1px}
+  .yr{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .board .live{animation:none;opacity:0}
+  .board .glow{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Navigasi utama"><div class="wrap">
+  <a class="brand" href="#top"><i>AW</i>Asep Widiyotomo</a>
+  <ul>
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#keahlian">Keahlian</a></li>
+    <li><a href="#pengalaman">Pengalaman</a></li>
+    <li><a href="#proyek">Proyek</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <h1>Saya merangkai sistem, dari sensor sampai layar.</h1>
+    <p class="lead">Asep Widiyotomo, system analyst dan full stack developer. Membangun aplikasi web, mobile, dan IoT untuk pemerintahan, pendidikan, dan bisnis.</p>
+    <div class="actions">
+      <a class="btn primary" href="#proyek">Lihat proyek</a>
+      <a class="btn ghost" href="https://wa.me/6282111557273" target="_blank" rel="noopener">Hubungi via WhatsApp</a>
+    </div>
+    <div class="stats">
+      <div><b>10+</b><span>tahun pengalaman</span></div>
+      <div><b>14</b><span>aplikasi dibangun</span></div>
+      <div><b>3</b><span>lapisan: perangkat, server, aplikasi</span></div>
+    </div>
+  </div>
+
+  <svg class="board" viewBox="0 0 560 480" role="img" aria-label="Papan sirkuit: sensor dan perangkat ESP32 terhubung ke inti sistem, lalu ke aplikasi web, Android, iOS, dan database">
+    <!-- jalur tembaga -->
+    <path class="tr" d="M70 90 H130 V190 H200"/>
+    <path class="tr" d="M70 390 H130 V290 H200"/>
+    <path class="tr" d="M360 205 H420 V80 H470"/>
+    <path class="tr" d="M360 240 H470"/>
+    <path class="tr" d="M360 275 H420 V400 H470"/>
+    <path class="tr" d="M280 330 V430"/>
+    <!-- arus hidup -->
+    <path class="live g" d="M70 90 H130 V190 H200"/>
+    <path class="live g d2" d="M70 390 H130 V290 H200"/>
+    <path class="live d1" d="M360 205 H420 V80 H470"/>
+    <path class="live d3" d="M360 240 H470"/>
+    <path class="live d4" d="M360 275 H420 V400 H470"/>
+    <path class="live d2" d="M280 330 V430"/>
+    <!-- via -->
+    <circle class="via" cx="130" cy="190" r="5"/><circle class="via" cx="130" cy="290" r="5"/>
+    <circle class="via" cx="420" cy="205" r="5"/><circle class="via" cx="420" cy="275" r="5"/>
+    <!-- chip inti -->
+    <g>
+      <rect class="chip" x="200" y="150" width="160" height="180" rx="10"/>
+      <g class="pin">
+        <rect x="190" y="175" width="10" height="5"/><rect x="190" y="200" width="10" height="5"/><rect x="190" y="225" width="10" height="5"/><rect x="190" y="250" width="10" height="5"/><rect x="190" y="275" width="10" height="5"/><rect x="190" y="300" width="10" height="5"/>
+        <rect x="360" y="175" width="10" height="5"/><rect x="360" y="200" width="10" height="5"/><rect x="360" y="225" width="10" height="5"/><rect x="360" y="250" width="10" height="5"/><rect x="360" y="275" width="10" height="5"/><rect x="360" y="300" width="10" height="5"/>
+      </g>
+      <circle cx="218" cy="168" r="4" fill="#3A5C8F"/>
+      <text class="core" x="280" y="236" text-anchor="middle">AW</text>
+      <text class="coresub" x="280" y="262" text-anchor="middle">LARAVEL · API</text>
+      <circle class="glow" cx="340" cy="312" r="5" fill="var(--cyan)"/>
+    </g>
+    <!-- pad masukan -->
+    <circle class="pad" cx="60" cy="90" r="12"/><text class="lbl" x="40" y="60">Sensor</text><text class="sub" x="40" y="128">udara · kandang</text>
+    <circle class="pad" cx="60" cy="390" r="12"/><text class="lbl" x="40" y="360">ESP32</text><text class="sub" x="40" y="428">MQTT</text>
+    <!-- pad keluaran -->
+    <circle class="pad" cx="482" cy="80" r="12"/><text class="lbl" x="502" y="85">Web</text>
+    <circle class="pad" cx="482" cy="240" r="12"/><text class="lbl" x="502" y="245">Android</text>
+    <circle class="pad" cx="482" cy="400" r="12"/><text class="lbl" x="502" y="405">iOS</text>
+    <circle class="pad" cx="280" cy="442" r="12"/><text class="lbl" x="302" y="447">MySQL</text>
+  </svg>
+</div></header>
+
+<section class="about" id="tentang"><div class="wrap">
+  <div>
+    <h2>Tentang saya</h2>
+    <p>Saya memulai karier dengan tangan di mesin: memasang dan mengkalibrasi printer barcode industri di lantai produksi. Dari sana saya belajar bahwa sistem yang baik adalah sistem yang tetap jalan saat dipakai orang sungguhan.</p>
+    <p>Sejak itu saya membangun aplikasi layanan publik untuk Pemerintah Kota Tangerang. Sekarang saya memimpin analisis dan pengembangan proyek klien di PT Appdev Digital Kreatif: menggali kebutuhan, merancang database, menulis kode, sampai aplikasi dipakai setiap hari.</p>
+  </div>
+  <div class="panel spec">
+    <dl>
+      <dt>Domisili</dt><dd>Tangerang, Banten</dd>
+      <dt>Pendidikan</dt><dd>Informatika, Unindra PGRI</dd>
+      <dt>Sertifikasi</dt><dd>BNSP Senior Programming</dd>
+      <dt>Metode</dt><dd>Agile/Scrum, Git</dd>
+      <dt>Sektor</dt><dd>Pemerintah, pendidikan, ritel, IoT</dd>
+    </dl>
+  </div>
+</div></section>
+
+<section id="keahlian"><div class="wrap">
+  <h2>Keahlian</h2>
+  <p class="intro">Tersusun seperti papan di atas: perangkat membaca data, server mengolahnya, aplikasi menampilkannya.</p>
+  <div class="layers">
+    <div class="panel layer" style="--c:var(--gold)">
+      <h3>Perangkat</h3>
+      <p class="what">Membaca data dari dunia nyata</p>
+      <ul class="chips"><li>ESP32 / ESP32-S3</li><li>ESP8266</li><li>Sensor kualitas udara</li><li>MQTT</li><li>Kalibrasi &amp; troubleshooting mesin</li></ul>
+    </div>
+    <div class="panel layer" style="--c:var(--cyan)">
+      <h3>Server</h3>
+      <p class="what">Mengolah, menyimpan, dan membuka data</p>
+      <ul class="chips"><li>Laravel / PHP</li><li>RESTful API</li><li>Microservices</li><li>MySQL &amp; desain database</li><li>Git</li><li>Deploy VPS</li></ul>
+    </div>
+    <div class="panel layer" style="--c:#8FB8FF">
+      <h3>Aplikasi</h3>
+      <p class="what">Yang dilihat dan dipakai pengguna</p>
+      <ul class="chips"><li>Blade &amp; JavaScript</li><li>jQuery / AJAX</li><li>Flutter</li><li>Kotlin (Android)</li><li>iOS</li><li>Dashboard &amp; laporan</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="pengalaman"><div class="wrap">
+  <h2>Pengalaman</h2>
+  <p class="intro">Dari teknisi di lantai produksi sampai memimpin proyek perangkat lunak.</p>
+  <ol class="bus">
+    <li class="now">
+      <div class="yr">2023 – kini</div>
+      <div><h3>PT Appdev Digital Kreatif</h3>
+      <div class="role">System Analyst, Project Manager, Full Stack &amp; Mobile Developer</div>
+      <p>Analisis kebutuhan dan manajemen proyek end-to-end untuk klien lintas sektor. Membangun aplikasi web dan mobile (iOS &amp; Android), merancang REST API, memimpin code review dan perencanaan sprint.</p></div>
+    </li>
+    <li>
+      <div class="yr">2019 – 2023</div>
+      <div><h3>Pemerintah Kota Tangerang</h3>
+      <div class="role">Tenaga Ahli Programmer, E-Government</div>
+      <p>Mengembangkan dan menguji aplikasi layanan publik bersama dinas terkait, serta melatih pengguna di lingkungan pemerintah kota.</p></div>
+    </li>
+    <li>
+      <div class="yr">2015 – 2019</div>
+      <div><h3>PT Printech Prakarsa Mandiri</h3>
+      <div class="role">Teknisi</div>
+      <p>Instalasi, kalibrasi, dan perawatan mesin barcode Markem-Imaje langsung di lokasi produksi pelanggan.</p></div>
+    </li>
+  </ol>
+</div></section>
+
+<section id="proyek"><div class="wrap">
+  <h2>Proyek pilihan</h2>
+  <p class="intro">Aplikasi yang dipakai warga, siswa, dan pelaku usaha setiap hari.</p>
+  <div class="filters" role="group" aria-label="Saring proyek">
+    <button type="button" data-f="all" aria-pressed="true">Semua</button>
+    <button type="button" data-f="gov" aria-pressed="false">Pemerintahan</button>
+    <button type="button" data-f="edu" aria-pressed="false">Pendidikan</button>
+    <button type="button" data-f="biz" aria-pressed="false">Bisnis &amp; ritel</button>
+    <button type="button" data-f="iot" aria-pressed="false">IoT</button>
+  </div>
+  <div class="grid">
+    <article class="panel card feat" data-c="gov"><div class="ind">Mobile app</div>
+      <h3>Tangerang LIVE</h3>
+      <p>Aplikasi resmi Pemerintah Kota Tangerang: layanan darurat, lowongan kerja, dan agenda kota dalam satu aplikasi.</p>
+      <span class="client">Pemerintah Kota Tangerang</span></article>
+    <article class="panel card" data-c="gov"><div class="ind">Mobile app</div>
+      <h3>SIDATA</h3>
+      <p>Pendataan warga penerima bantuan sosial yang terstruktur, sehingga verifikasi petugas lebih cepat.</p>
+      <span class="client">Pemerintah Kota Tangerang</span></article>
+    <article class="panel card" data-c="gov"><div class="ind">Mobile app</div>
+      <h3>Pasar Online</h3>
+      <p>Belanja kebutuhan pasar tradisional dari rumah dengan konsep pesan-antar.</p>
+      <span class="client">Pemerintah Kota Tangerang</span></article>
+    <article class="panel card" data-c="gov"><div class="ind">Mobile app</div>
+      <h3>Cashere</h3>
+      <p>Point of sales sederhana untuk mencatat transaksi harian UMKM.</p>
+      <span class="client">UMKM Kota Tangerang</span></article>
+    <article class="panel card" data-c="gov"><div class="ind">Mobile app</div>
+      <h3>SPMB Kota Tangerang</h3>
+      <p>Pendaftaran dan seleksi murid baru secara online di sekolah-sekolah Kota Tangerang.</p>
+      <span class="client">Pemerintah Kota Tangerang</span></article>
+    <article class="panel card" data-c="biz"><div class="ind">Web</div>
+      <h3>Dashboard Star Elektronik</h3>
+      <p>Satu panel untuk stok multi-cabang, pesanan, retur, serta laporan pendapatan dan buku kas real-time.</p>
+      <span class="client">Star Elektronik</span></article>
+    <article class="panel card" data-c="biz"><div class="ind">Web, iOS, Android</div>
+      <h3>IGP Jewelry</h3>
+      <p>Pencatatan penjualan perhiasan dengan dashboard berat emas dan grafik transaksi bulanan.</p>
+      <span class="client">IGP Jewelry</span></article>
+    <article class="panel card" data-c="biz"><div class="ind">Web, Android</div>
+      <h3>POS Batik Bali Lestari</h3>
+      <p>Kasir untuk SPG di setiap cabang dengan rekap penjualan per outlet secara real-time.</p>
+      <span class="client">Batik Bali Lestari</span></article>
+    <article class="panel card" data-c="biz"><div class="ind">Web, iOS, Android</div>
+      <h3>Koedapan Nusantara</h3>
+      <p>Pemesanan makanan pickup dan pre-order, lengkap dengan pencarian toko terdekat.</p>
+      <span class="client">Koedapan Nusantara</span></article>
+    <article class="panel card" data-c="biz"><div class="ind">Web</div>
+      <h3>Putra Indo News</h3>
+      <p>Portal berita dengan sistem manajemen konten untuk tim redaksi.</p>
+      <span class="client">Putra Indo News</span></article>
+    <article class="panel card" data-c="edu"><div class="ind">Web, iOS, Android</div>
+      <h3>Siswa TIP &amp; Pegawai TIP</h3>
+      <p>Tryout, presensi, jadwal, materi, dan informasi gaji pengajar untuk bimbingan belajar calon polisi.</p>
+      <span class="client">Bimbel Tactical In Police</span></article>
+    <article class="panel card" data-c="edu"><div class="ind">Web</div>
+      <h3>Tactical Akademi</h3>
+      <p>Bimbel online SD sampai SMA dengan tryout dan pemantauan perkembangan siswa.</p>
+      <span class="client">Tactical Akademi</span></article>
+    <article class="panel card" data-c="iot"><div class="ind">ESP32-S3 + web</div>
+      <h3>Monitoring Kualitas Udara</h3>
+      <p>Perangkat pengukur PM10, SO₂, CO, O₃, dan NO₂ dengan perhitungan indeks ISPU.</p>
+      <span class="client">Proyek IoT</span></article>
+    <article class="panel card" data-c="iot"><div class="ind">Laravel + sensor MQTT</div>
+      <h3>FarmPro</h3>
+      <p>Manajemen peternakan ayam broiler dengan data sensor kandang dan laporan KPI.</p>
+      <span class="client">Proyek IoT</span></article>
+  </div>
+</div></section>
+
+<section class="contact" id="kontak"><div class="wrap">
+  <h2>Punya sistem yang perlu dirangkai?</h2>
+  <p class="intro">Ceritakan kebutuhannya. Saya bantu dari analisis sampai aplikasi berjalan.</p>
+  <div class="links">
+    <a class="panel" href="https://wa.me/6282111557273" target="_blank" rel="noopener"><b>WhatsApp</b><span>0821 1155 7273</span></a>
+    <a class="panel" href="mailto:asepsoo55@gmail.com"><b>Email</b><span>asepsoo55@gmail.com</span></a>
+    <a class="panel" href="https://github.com/saveme1507" target="_blank" rel="noopener"><b>GitHub</b><span>github.com/saveme1507</span></a>
+  </div>
+  <footer>© 2026 Asep Widiyotomo. Tangerang, Banten.</footer>
+</div></section>
+
+<script>
+const btns=document.querySelectorAll('.filters button');
+const cards=document.querySelectorAll('.card');
+btns.forEach(b=>b.addEventListener('click',()=>{
+  btns.forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const f=b.dataset.f;
+  cards.forEach(c=>{c.hidden=!(f==='all'||c.dataset.c===f)});
+}));
+</script>
+</body>
+</html>
